@@ -2,7 +2,6 @@
 #include <SPI.h>
 
 static const int pinVddEnable = 7;
-
 static const int pinRS = 5;
 static const int pinSS = 10;
 static const int pinReset = 6;
@@ -14,7 +13,6 @@ static void SEPS525_reg(int idx, int value)
   SPI.transfer(idx);
   digitalWrite(pinRS, HIGH);
   digitalWrite(pinSS, HIGH);
-
   digitalWrite(pinSS, LOW);
   SPI.transfer(value);
   digitalWrite(pinSS, HIGH);
@@ -24,7 +22,7 @@ static inline void SEPS525_datastart(void)
 {
   digitalWrite(pinSS, LOW);
   digitalWrite(pinRS, LOW);
-  SPI.transfer(0x22);
+  SPI.transfer(rDDRAM_DATA_ACCESS_PORT);
   digitalWrite(pinRS, HIGH);
 }
 
@@ -42,14 +40,14 @@ static inline void SEPS525_dataend(void)
 static void SEPS525_set_region(int x, int y, int xs, int ys)
 {
   // draw region
-  SEPS525_reg(0x17,x);
-  SEPS525_reg(0x18,x+xs-1);
-  SEPS525_reg(0x19,y);
-  SEPS525_reg(0x1a,y+ys-1);
+  SEPS525_reg(rMX1_ADDR,x);
+  SEPS525_reg(rMX2_ADDR,x+xs-1);
+  SEPS525_reg(rMY1_ADDR,y);
+  SEPS525_reg(rMY2_ADDR,y+ys-1);
   
   // start position
-  SEPS525_reg(0x20,x);
-  SEPS525_reg(0x21,y);
+  SEPS525_reg(rMEMORY_ACCESS_POINTER_X,x);
+  SEPS525_reg(rMEMORY_ACCESS_POINTER_Y,y);
 }
 
 static void SEPS525_setup(void) 
