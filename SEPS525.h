@@ -1,122 +1,95 @@
-/*************************************************** 
-  This is a library for the 1.5" & 1.27" 16-bit Color OLEDs 
-  with SSD1331 driver chip
+#ifndef _SEPS525_OLED_H_
+#define _SEPS525_OLED_H_
 
-  Pick one up today in the adafruit shop!
-  ------> http://www.adafruit.com/products/1431
-  ------> http://www.adafruit.com/products/1673
+#include <Adafruit_GFX.h>
 
-  These displays use SPI to communicate, 4 or 5 pins are required to  
-  interface
-  Adafruit invests time and resources providing this open source code, 
-  please support Adafruit and open-source hardware by purchasing 
-  products from Adafruit!
+class SEPS525 : public Adafruit_GFX {
+	public:
+		SEPS525_OLED(void);
 
-  Written by Limor Fried/Ladyada for Adafruit Industries.  
-  BSD license, all text above must be included in any redistribution
- ****************************************************/
+		void begin(void);
 
-#define SSD1351WIDTH 128
-#define SSD1351HEIGHT 128  // SET THIS TO 96 FOR 1.27"!
-
-#define swap(a, b) { uint16_t t = a; a = b; b = t; }
-
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-
-#ifdef __SAM3X8E__
-    typedef volatile RwReg PortReg;
-    typedef uint32_t PortMask;
-#else
-    typedef volatile uint8_t PortReg;
-    typedef uint8_t PortMask;
-#endif
-
-// Select one of these defines to set the pixel color order
-#define SSD1351_COLORORDER_RGB
-// #define SSD1351_COLORORDER_BGR
-
-#if defined SSD1351_COLORORDER_RGB && defined SSD1351_COLORORDER_BGR
-  #error "RGB and BGR can not both be defined for SSD1351_COLORODER."
-#endif
-
-// Timing Delays
-#define SSD1351_DELAYS_HWFILL	    (3)
-#define SSD1351_DELAYS_HWLINE       (1)
-
-// SSD1351 Commands
-#define SSD1351_CMD_SETCOLUMN 		0x15
-#define SSD1351_CMD_SETROW    		0x75
-#define SSD1351_CMD_WRITERAM   		0x5C
-#define SSD1351_CMD_READRAM   		0x5D
-#define SSD1351_CMD_SETREMAP 		0xA0
-#define SSD1351_CMD_STARTLINE 		0xA1
-#define SSD1351_CMD_DISPLAYOFFSET 	0xA2
-#define SSD1351_CMD_DISPLAYALLOFF 	0xA4
-#define SSD1351_CMD_DISPLAYALLON  	0xA5
-#define SSD1351_CMD_NORMALDISPLAY 	0xA6
-#define SSD1351_CMD_INVERTDISPLAY 	0xA7
-#define SSD1351_CMD_FUNCTIONSELECT 	0xAB
-#define SSD1351_CMD_DISPLAYOFF 		0xAE
-#define SSD1351_CMD_DISPLAYON     	0xAF
-#define SSD1351_CMD_PRECHARGE 		0xB1
-#define SSD1351_CMD_DISPLAYENHANCE	0xB2
-#define SSD1351_CMD_CLOCKDIV 		0xB3
-#define SSD1351_CMD_SETVSL 		0xB4
-#define SSD1351_CMD_SETGPIO 		0xB5
-#define SSD1351_CMD_PRECHARGE2 		0xB6
-#define SSD1351_CMD_SETGRAY 		0xB8
-#define SSD1351_CMD_USELUT 		0xB9
-#define SSD1351_CMD_PRECHARGELEVEL 	0xBB
-#define SSD1351_CMD_VCOMH 		0xBE
-#define SSD1351_CMD_CONTRASTABC		0xC1
-#define SSD1351_CMD_CONTRASTMASTER	0xC7
-#define SSD1351_CMD_MUXRATIO            0xCA
-#define SSD1351_CMD_COMMANDLOCK         0xFD
-#define SSD1351_CMD_HORIZSCROLL         0x96
-#define SSD1351_CMD_STOPSCROLL          0x9E
-#define SSD1351_CMD_STARTSCROLL         0x9F
-
-
-class Adafruit_SSD1351  : public virtual Adafruit_GFX {
- public:
-  Adafruit_SSD1351(uint8_t CS, uint8_t RS, uint8_t SID, uint8_t SCLK, uint8_t RST);
-  Adafruit_SSD1351(uint8_t CS, uint8_t RS, uint8_t RST);
-
-  uint16_t Color565(uint8_t r, uint8_t g, uint8_t b);
-
-  // drawing primitives!
-  void drawPixel(int16_t x, int16_t y, uint16_t color);
-  void fillRect(uint16_t x0, uint16_t y0, uint16_t w, uint16_t h, uint16_t color);
-  void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
-  void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
-  void fillScreen(uint16_t fillcolor);
-
-  void invert(boolean);
-  // commands
-  void begin(void);
-  void goTo(int x, int y);
-
-  void reset(void);
-
-  /* low level */
-
-  void writeData(uint8_t d);
-  void writeCommand(uint8_t c);
-
-
-  void writeData_unsafe(uint16_t d);
-
-  void setWriteDir(void);
-  void write8(uint8_t d);
-
- private:
-  void spiwrite(uint8_t);
-
-  uint8_t _cs, _rs, _rst, _sid, _sclk;
-  PortReg *csport, *rsport, *sidport, *sclkport;
-  PortMask cspinmask, rspinmask, sidpinmask, sclkpinmask;
+		void drawPixel(int16_t x, int16_t y, uint16_t color);
+		void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
+		void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
+		void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+		uint16_t color565(uint8_t r, uint8_t g, uint8_t b);
 };
+
+//==============================================
+//	SEPS225 Register
+//==============================================
+#define rINDEX						0x00
+#define rSTATUS_RD					0x01
+#define rOSC_CTL					0x02
+#define rCLOCK_DIV					0x03
+#define rREDUCE_CURRENT				0x04
+#define rSOFT_RST					0x05
+#define rDISP_ON_OFF				0x06
+#define rPRECHARGE_TIME_R			0x08
+#define rPRECHARGE_TIME_G			0x09
+#define rPRECHARGE_TIME_B			0x0a
+#define rPRECHARGE_Current_R		0x0b
+#define rPRECHARGE_Current_G		0x0c
+#define rPRECHARGE_Current_B		0x0d
+#define rDRIVING_CURRENT_R			0x10
+#define rDRIVING_CURRENT_G			0x11
+#define rDRIVING_CURRENT_B			0x12
+#define rDISPLAY_MODE_SET			0x13
+#define rRGB_IF						0x14
+#define rRGB_POL					0x15
+#define rMEMORY_WRITE_MODE			0x16
+#define rMX1_ADDR					0x17
+#define rMX2_ADDR					0x18
+#define rMY1_ADDR					0x19
+#define rMY2_ADDR					0x1A
+#define rMEMORY_ACCESS_POINTER_X	0x20
+#define rMEMORY_ACCESS_POINTER_Y	0x21
+#define rDDRAM_DATA_ACCESS_PORT		0x22
+#define rDUTY						0x28
+#define rDSL						0x29
+#define rD1_DDRAM_FAC				0x2E
+#define rD1_DDRAM_FAR				0x2F
+#define rD2_DDRAM_SAC				0x31
+#define rD2_DDRAM_SAR				0x32
+#define rSCR1_FX1					0x33
+#define rSCR1_FX2					0x34
+#define rSCR1_FY1					0x35
+#define rSCR1_FY2					0x36
+#define rSCR2_SX1					0x37
+#define rSCR2_SX2					0x38
+#define rSCR2_SY1					0x39
+#define rSCR2_SY2					0x3A
+#define rSCREEN_SAVER_CONTEROL		0x3B
+#define rSS_SLEEP_TIMER				0x3C
+#define rSCREEN_SAVER_MODE			0x3D
+#define rSS_SCR1_FU					0x3E
+#define rSS_SCR1_MXY				0x3F
+#define rSS_SCR2_FU					0x40
+#define rSS_SCR2_MXY				0x41
+#define rMOVING_DIRECTION			0x42
+#define rSS_SCR2_SX1				0x47
+#define rSS_SCR2_SX2				0x48
+#define rSS_SCR2_SY1				0x49
+#define rSS_SCR2_SY2				0x4A
+#define rIREF						0x80
+
+#define Red						    (0x3f)<<11
+#define Green						(0x3f)<<5
+#define Blue						(0x3f)
+#define White						Red|Blue|Green
+
+#define	col		160
+#define row		128
+
+#define DrivingR		0x7F	//廠內:0xff 170
+#define DrivingG		0x7F	//廠內:0xff	170
+#define DrivingB		0x7F	//廠內:0xff	200
+#define PreTimeR		0x01	//廠內:0x0e 03
+#define PreTimeG		0x01	//廠內:0x0e 03
+#define PreTimeB		0x01	//廠內:0x0e 03
+#define PreCurrentR 	0x0a	//廠內:0xff D
+#define PreCurrentG		0x0a	//廠內:0xff D
+#define PreCurrentB		0x0a	//廠內:0xff D
+
+#endif
