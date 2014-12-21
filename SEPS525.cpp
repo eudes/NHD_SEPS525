@@ -3,7 +3,7 @@
 
 static const int pinVddEnable = 7;
 static const int pinRS = 5;
-static const int pinSS = 10;
+static const int pinSS = 14;
 static const int pinReset = 6;
 
 static void SEPS525_reg(int idx, int value)
@@ -135,13 +135,18 @@ static void SEPS525_init(void)
   SEPS525_reg(rDISP_ON_OFF, 0x01);
 }
 
-SEPS525::SEPS525_OLED(void) : Adafruit_GFX(col, row) 
+SEPS525::SEPS525(void) : Adafruit_GFX(col, row) 
 {
 }
 
 void SEPS525::begin(void)
 {
 	SEPS525_init();
+}
+
+void SEPS525::goTo(int16_t x, int16_t y)
+{
+	SEPS525_set_region(x, y, col-x, row-y);  
 }
 
 void SEPS525::drawPixel(int16_t x, int16_t y, uint16_t color)
@@ -177,6 +182,10 @@ void SEPS525::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t colo
 	int n;
 	for(n = 0; n < h*w; n++) SEPS525_data(color);
 	SEPS525_dataend();
+}
+
+void SEPS525::fillScreen(uint16_t fillcolor) {
+  fillRect(0, 0, col, row, fillcolor);
 }
 
 uint16_t SEPS525::color565(uint8_t r, uint8_t g, uint8_t b)

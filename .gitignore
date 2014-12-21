@@ -41,3 +41,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+Adafruit_SSD1131.zip
+Adafruit_SSD1351.cpp
+Adafruit_SSD1351.h
+*.zip
+*.pdf
+*.rar
+UG-60281/ug6028.c
+UG-60281/ug6028.h
