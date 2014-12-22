@@ -164,7 +164,7 @@ void bmpDraw(char *filename, uint8_t x, uint8_t y) {
         if((y+h-1) >= row) h = row - y;
 
         for (_row=0; _row<h; _row++) { // For each scanline...
-          UG6028.goTo(x, y+_row);
+          //UG6028.goTo(x, y+_row);
 
           // Seek to start of scan line.  It might seem labor-
           // intensive to be doing this on every line, but this

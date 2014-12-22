@@ -3,7 +3,7 @@
 
 static const int pinVddEnable = 7;
 static const int pinRS = 5;
-static const int pinSS = 14;
+static const int pinSS = 8;
 static const int pinReset = 6;
 
 static void SEPS525_reg(int idx, int value)
@@ -113,7 +113,7 @@ static void SEPS525_init(void)
   SEPS525_reg(rPRECHARGE_Current_R, PreCurrentR);
   SEPS525_reg(rPRECHARGE_Current_G, PreCurrentG);
   SEPS525_reg(rPRECHARGE_Current_B, PreCurrentB);
-
+/*
   SEPS525_reg(rIREF, 0x00);
 
   // mode set
@@ -131,7 +131,26 @@ static void SEPS525_init(void)
   
   digitalWrite(pinVddEnable, LOW);
   delay(100);
-  
+  */
+  	  SEPS525_reg(rDISPLAY_MODE_SET,0x00); 						//Reg:13h	Action:Col D0 to D159/col normal display
+	  SEPS525_reg(rRGB_IF,0x31); //0x31 										//Reg:14h	Action:MPU mode
+	  SEPS525_reg(rMEMORY_WRITE_MODE,0x66); 					//Reg:16h	Action:8btis dual transfer,65K support
+	  SEPS525_reg(rMX1_ADDR,0x00); 										//Reg:17h	Action:Memory addr.X start
+	  SEPS525_reg(rMX2_ADDR,col-1); 									//Reg:18h	Action:Memory addr.X end
+	  SEPS525_reg(rMY1_ADDR,0x00); 										//Reg:18h	Action:Memory addr.Y start
+	  SEPS525_reg(rMY2_ADDR,row-1);  									//Reg:1Ah	Action:Memory addr.Y end
+	  SEPS525_reg(rMEMORY_ACCESS_POINTER_X,0x00);			//Reg:20h	Action:Memory X start addr.
+	  SEPS525_reg(rMEMORY_ACCESS_POINTER_Y,0x00); 		//Reg:21h	Action:Memory Y start addr.
+	  SEPS525_reg(rDUTY,row-1);  											//Reg:28h	Action:Display duty ratio
+	  SEPS525_reg(rDSL,0x00);   											//Reg:29h	Action:Display start line
+	  SEPS525_reg(rD1_DDRAM_FAC,0x00);     						//Reg:2Eh	Action:Display First screen X start point
+	  SEPS525_reg(rD1_DDRAM_FAR,0x00);								//Reg:2Fh	Action:Display First screen Y start point
+	  SEPS525_reg(rD2_DDRAM_SAR,0x00); 								//Reg:31h	Action:Display Second screen X start point
+	  SEPS525_reg(rD2_DDRAM_SAR,0x00); 								//Reg:32h	Action:Display Second screen Y start point
+	  SEPS525_reg(rSCR1_FX1,0x00); 										//Reg:33h	Action:Display size X start
+	  SEPS525_reg(rSCR1_FX2,col-1); 									//Reg:34h	Action:Display size X end
+	  SEPS525_reg(rSCR1_FY1,0x00); 										//Reg:35h	Action:Display size Y start
+	  SEPS525_reg(rSCR1_FY2,row-1); 						//Reg:04h	Action:Normal current and PS OFF
   SEPS525_reg(rDISP_ON_OFF, 0x01);
 }
 
@@ -190,5 +209,5 @@ void SEPS525::fillScreen(uint16_t fillcolor) {
 
 uint16_t SEPS525::color565(uint8_t r, uint8_t g, uint8_t b)
 {
-	return (r << 11) | (g << 5) | b;
+	return (r << 12) | (g << 6) | b;
 }
