@@ -190,9 +190,9 @@ void bmpDraw(char *filename, uint8_t x, uint8_t y) {
             }
 
             // Convert pixel from BMP to TFT format, push to display
-            b = sdbuffer[buffidx++];
-            g = sdbuffer[buffidx++];
             r = sdbuffer[buffidx++];
+            g = sdbuffer[buffidx++];
+            b = sdbuffer[buffidx++];
 
             UG6028.drawPixel(x+_col, y+_row, UG6028.color565(r,g,b));
             // optimized!

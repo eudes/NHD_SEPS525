@@ -50,3 +50,5 @@ Adafruit_SSD1351.h
 *.rar
 UG-60281/ug6028.c
 UG-60281/ug6028.h
+examples/bmp/SEPS525.cpp
+examples/bmp/SEPS525.h
