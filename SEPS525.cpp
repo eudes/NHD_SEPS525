@@ -205,5 +205,13 @@ void SEPS525::fillScreen(uint16_t fillcolor) {
 
 uint16_t SEPS525::color565(uint8_t r, uint8_t g, uint8_t b)
 {
-	return (r << 11) | (g << 5) | b;
+	//return (r << 11) | (g << 5) | b;
+	uint16_t c;
+  c = r >> 3;
+  c <<= 6;
+  c |= g >> 2;
+  c <<= 5;
+  c |= b >> 3;
+
+  return c;
 }
