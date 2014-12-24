@@ -84,14 +84,14 @@ class SEPS525 : public Adafruit_GFX {
 #define	col		160
 #define row		128
 
-#define DrivingR		0x9F	//廠內:0xff 170
-#define DrivingG		0x9F	//廠內:0xff	170
-#define DrivingB		0x9F	//廠內:0xff	200
-#define PreTimeR		0x0e	//廠內:0x0e 03
-#define PreTimeG		0x0e	//廠內:0x0e 03
-#define PreTimeB		0x0e	//廠內:0x0e 03
-#define PreCurrentR 	0x9F	//廠內:0xff D
-#define PreCurrentG		0x9F	//廠內:0xff D
-#define PreCurrentB		0x9F	//廠內:0xff D
+#define DrivingR		0x9F	//Max:0xff Now:159
+#define DrivingG		0x9F	//Max:0xff	Now:159
+#define DrivingB		0x9F	//Max:0xff	Now:159
+#define PreTimeR		0x0e	//Max:0x0e Now: 14
+#define PreTimeG		0x0e	//Max:0x0e Now: 14
+#define PreTimeB		0x0e	//Max:0x0e Now: 14
+#define PreCurrentR 	0x9F	//Max:0xff Now:159
+#define PreCurrentG		0x9F	//Max:0xff Now:159
+#define PreCurrentB		0x9F	//Max:0xff Now:159
 
 #endif
