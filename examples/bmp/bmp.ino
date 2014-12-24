@@ -82,7 +82,7 @@ void setup(void) {
   }
   Serial.println("SD OK!");
 
-  bmpDraw("lily128.bmp", 0, 0);
+  bmpDraw("cat1.bmp", 0, 0);
 }
 
 void loop() {
