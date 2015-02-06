@@ -10,7 +10,7 @@ Place the NHD_SEPS525 library folder in your <arduinosketchfolder>/libraries/ fo
 
 You will also have to download the Adafruit GFX Graphics core which does all the circles, text, rectangles, etc. You can get it from
 https://github.com/adafruit/Adafruit-GFX-Library
-and download/install that library as well 
+and download/install that library as well.
  
  
   Datasheet:
