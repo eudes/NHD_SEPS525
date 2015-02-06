@@ -1,9 +1,9 @@
-#include <SEPS525.h>
+#include <NHD_SEPS525.h>
 #include <SPI.h>
 
 static const int pinVddEnable = 7;
-static const int pinRS = 5;
-static const int pinSS = 8;
+static const int pinRS = 4;
+static const int pinSS = 5;
 static const int pinReset = 6;
 
 static void SEPS525_reg(int idx, int value)
@@ -113,25 +113,7 @@ static void SEPS525_init(void)
   SEPS525_reg(rPRECHARGE_Current_R, PreCurrentR);
   SEPS525_reg(rPRECHARGE_Current_G, PreCurrentG);
   SEPS525_reg(rPRECHARGE_Current_B, PreCurrentB);
-/*
-  SEPS525_reg(rIREF, 0x00);
 
-  // mode set
-  SEPS525_reg(rDISPLAY_MODE_SET, 0x00);
-  
-  
-  SEPS525_set_region(0, 0, col, row);
-
-  SEPS525_datastart();
-  int n;
-  for(n = 0; n < col*row; n++) {
-    SEPS525_data(0xffff);
-  }
-  SEPS525_dataend();
-  
-  digitalWrite(pinVddEnable, LOW);
-  delay(100);
-  */
   	SEPS525_reg(rDISPLAY_MODE_SET,0x00); 						//Reg:13h	Action:Col D0 to D159/col normal display
 	  SEPS525_reg(rMX1_ADDR,0x00); 										//Reg:17h	Action:Memory addr.X start
 	  SEPS525_reg(rMX2_ADDR,col-1); 									//Reg:18h	Action:Memory addr.X end

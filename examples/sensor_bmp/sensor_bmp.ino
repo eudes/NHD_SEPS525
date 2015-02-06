@@ -38,7 +38,14 @@ Hardware: (Note most of these pins can be swapped)
        CD         ----------------  N.C. - 10k Ohm resistor pull up to another pin to detect card.
        Vin        ----------------  5V or 3.3V
        GND        ----------------  GND
-
+       
+    TMP36 Sensor ----------------Arduino Pin 
+       VS        ----------------  3.3V or 5V
+       VOUT      ----------------  VOUT A0
+       GND       ----------------  GND
+       
+       Digi-Key Part Number	TMP36GT9Z-ND
+       
 */
 
 #include <Adafruit_GFX.h>
@@ -67,6 +74,13 @@ Hardware: (Note most of these pins can be swapped)
 // to draw images from the SD card, we will share the hardware SPI interface
 SEPS525 UG6028;
 
+SEPS525 OLED;
+
+//TMP36 Pin Variables
+int sensorPin = 0; //the analog pin the TMP36's Vout (sense) pin is connected to
+//the resolution is 10 mV / degree centigrade with a
+//500 mV offset to allow for negative temperatures
+
 // For Arduino Uno/Duemilanove, etc
 //  connect the SD card with MOSI going to pin 11, MISO going to pin 12 and SCK going to pin 13 (standard)
 //  Then pin 10 goes to CS (or whatever you have set up)
@@ -81,6 +95,7 @@ uint8_t bmpDepth, bmpImageoffset;
 
 
 void setup(void) {
+  OLED.begin();
   Serial.begin(9600);
      
   // initialize the OLED
@@ -99,10 +114,34 @@ void setup(void) {
   }
   Serial.println("SD OK!");
 
-  bmpDraw("cat1.bmp", 0, 0);
+  bmpDraw("gauge3.bmp", 0, 0);
 }
 
 void loop() {
+//getting the voltage reading from the temperature sensor
+int reading = analogRead(sensorPin);
+
+// converting that reading to voltage, for 3.3v arduino use 3.3
+float voltage = reading * 5.0;
+voltage /= 1024.0;
+
+// now print out the temperature
+float temperatureC = (voltage - 0.5) * 100 ;  //converting from 10 mv per degree wit 500 mV offset
+
+// now convert to Fahrenheit
+float temperatureF = (temperatureC * 9.0 / 5.0) + 32.0;
+
+OLED.setCursor(55, 40);
+OLED.setTextColor(WHITE);
+OLED.setTextSize(5);
+OLED.print(temperatureF, 0);
+
+delay(5000);                                     //waiting 6 second
+
+OLED.setCursor(55, 40);
+OLED.setTextColor(BLACK);
+OLED.setTextSize(5);
+OLED.print(temperatureF, 0);
 }
 
 // This function opens a Windows Bitmap (BMP) file and
