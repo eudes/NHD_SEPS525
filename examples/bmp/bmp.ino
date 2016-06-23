@@ -99,7 +99,15 @@ void setup(void) {
   }
   Serial.println("SD OK!");
 
-  bmpDraw("cat1.bmp", 0, 0);
+  bmpDraw("160128_0.bmp", 0, 0);
+    delay(1000);
+  bmpDraw("160128_1.bmp", 0, 0);
+    delay(1000);
+  bmpDraw("160128_2.bmp", 0, 0);
+    delay(1000);
+  bmpDraw("160128_3.bmp", 0, 0);
+      delay(1000);
+  bmpDraw("160128_4.bmp", 0, 0);
 }
 
 void loop() {
