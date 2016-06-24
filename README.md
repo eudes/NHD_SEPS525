@@ -14,6 +14,6 @@ download and install that library as well.
  
  
 Newhaven Displays Datasheet:
-  [1.69" Color OLED](http://www.newhavendisplay.com/specs/NHD-1.69-160128UGC3.pdf).
+  [1.69" Color OLED NHD-1.69-AU-SHIELD](http://www.newhavendisplay.com/specs/NHD-1.69-160128UGC3.pdf).
  
   [Controller - SEPS525](http://www.newhavendisplay.com/app_notes/SEPS525.pdf).
