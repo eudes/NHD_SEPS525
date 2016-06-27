@@ -4,8 +4,9 @@ This is a library for the 1.69" Newhaven Displays NHD-1.69-AU-SHIELD (160x128) G
 
 This controller library will allow you to access the SD card slot on the NHD-1.69-AU-SHIELD to read files and images from the SD card.
 The code is written for the Arduino Uno R3.
- 
+
 To download this library, click the DOWNLOADS button in the top right corner.
+
 1.) Uncompress the folder and verify that the NHD_SEPS525 folder contains both the NHD_SEPS525.cpp and NHD_SEPS525.h files
 
 2.) Copy the NHD_SEPS525-master library folder into your <arduinosketchfolder>/libraries/ folder. 
