@@ -11,7 +11,7 @@ To download this library, click the DOWNLOADS button in the top right corner.
 
 2.) Copy the NHD_SEPS525-master library folder into your <arduinosketchfolder>/libraries/ folder. 
 
-3.) Install the Aidafruit GFX Library using the Library Manager within the Arduino IDE Manage Libraries.  
+3.) Install the Adafruit GFX Library using the Library Manager within the Arduino IDE Manage Libraries.  
 Or download the Adafruit GFX Graphics core from https://github.com/adafruit/Adafruit-GFX-Library and copy the Adafruit-GFX-Library-master folder into your <arduinosketchfolder>/libraries/ folder. 
 
 4.) Restart the IDE.
