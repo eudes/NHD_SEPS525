@@ -20,7 +20,7 @@ Or download the Adafruit GFX Graphics core from https://github.com/adafruit/Adaf
 
 You will now be able to run the example code located in the \examples folder of this repository.
 
-When the example Arduino Uno program (located in the \bmp folder) "bmp.ino" is run, it will display the 5 bitmap images when they are placed onto a FAT32 microSD card in the NHD-1.69-AU-SHIELD.  
+When the example Arduino Uno program (located in the \examples\bmp folder) "bmp.ino" is run, it will display the 5 bitmap images when they are placed onto a FAT32 microSD card in the NHD-1.69-AU-SHIELD.  
 
 Newhaven Displays Datasheet:
   [1.69" Color OLED NHD-1.69-AU-SHIELD](http://www.newhavendisplay.com/specs/NHD-1.69-160128UGC3.pdf).
