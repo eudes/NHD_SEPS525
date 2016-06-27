@@ -14,9 +14,9 @@ To download this library, click the DOWNLOADS button in the top right corner.
 3.) Install the Aidafruit GFX Library using the Library Manager within the Arduino IDE Manage Libraries.  
 Or download the Adafruit GFX Graphics core from https://github.com/adafruit/Adafruit-GFX-Library and copy the Adafruit-GFX-Library-master folder into your <arduinosketchfolder>/libraries/ folder. 
 
-5.) Restart the IDE.
+4.) Restart the IDE.
 
-6.) Verify that both of these libraries are displayed in the list of Libraries when you select Include Libraries from the Sketch menu.
+5.) Verify that both of these libraries are displayed in the list of Libraries when you select Include Libraries from the Sketch menu.
 
 You will now be able to run the example code located in the \examples folder of this repository.
 
